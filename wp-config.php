@@ -17,16 +17,35 @@
  *
  * @package WordPress
  */
+ 
+$connectstr_dbhost = '';
+$connectstr_dbname = '';
+$connectstr_dbusername = '';
+$connectstr_dbpassword = '';
+
+foreach ($_SERVER as $key => $value) {
+    if (strpos($key, "MYSQLCONNSTR_") !== 0) {
+        continue;
+    }
+    
+    $connectstr_dbhost = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
+    $connectstr_dbname = preg_replace("/^.*Database=(.+?);.*$/", "\\1", $value);
+    $connectstr_dbusername = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
+    $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
+}
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', getenv('DBNAME'));
+define('DB_NAME', $connectstr_dbname);
+
 /** MySQL database username */
-define('DB_USER', getenv('DBUSER'));
+define('DB_USER', $connectstr_dbusername);
+
 /** MySQL database password */
-define('DB_PASSWORD', getenv('DBPASSWORD'));
+define('DB_PASSWORD', $connectstr_dbpassword);
+
 /** MySQL hostname */
-define('DB_HOST', getenv('DBHOSTNAME'));
+define('DB_HOST', $connectstr_dbhost);
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
@@ -45,14 +64,15 @@ define('DB_COLLATE', '');
  */
 //Security key settings
 /** If you need to generate the string for security keys mentioned above, you can go the automatic generator to create new keys/values: https://api.wordpress.org/secret-key/1.1/salt **/
-define('AUTH_KEY',         getenv('authentication Key'));
-define('SECURE_AUTH_KEY',  getenv('secure Authentication Key'));
-define('LOGGED_IN_KEY',    getenv('logged In Key'));
-define('NONCE_KEY',        getenv('nonce Key'));
-define('AUTH_SALT',        getenv('authentication Salt'));
-define('SECURE_AUTH_SALT', getenv('secure Authentication Salt'));
-define('LOGGED_IN_SALT',   getenv('logged In Salt'));
-define('NONCE_SALT',       getenv('nonce Salt'));
+define('AUTH_KEY',         'put your unique phrase here');
+define('SECURE_AUTH_KEY',  'put your unique phrase here');
+define('LOGGED_IN_KEY',    'put your unique phrase here');
+define('NONCE_KEY',        'put your unique phrase here');
+define('AUTH_SALT',        'put your unique phrase here');
+define('SECURE_AUTH_SALT', 'put your unique phrase here');
+define('LOGGED_IN_SALT',   'put your unique phrase here');
+define('NONCE_SALT',       'put your unique phrase here');
+
 
 /**#@-*/
 
