@@ -20,7 +20,7 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 
 <h1><?php printf( __( 'Welcome to WordPress %s' ), $display_version ); ?></h1>
 
-<div class="about-text"><?php printf( __( 'Thank you for updating! WordPress %s makes your site more connected and responsive.' ), $display_version ); ?></div>
+<p class="about-text"><?php printf( ( 'Thank you for updating to the latest version. WordPress %s changes a lot behind the scenes to make your WordPress experience even better!' ), $display_version ); ?></p>
 
 <div class="wp-badge"><?php printf( __( 'Version %s' ), $display_version ); ?></div>
 
@@ -42,6 +42,7 @@ if ( ! $credits ) {
 		__( 'https://make.wordpress.org/' )
 	);
 	echo '</p>';
+	echo '</div>';
 	include( ABSPATH . 'wp-admin/admin-footer.php' );
 	exit;
 }
@@ -118,5 +119,7 @@ __( 'Contributing Developers' );
 __( 'Cofounder, Project Lead' );
 __( 'Lead Developer' );
 __( 'Release Lead' );
+__( 'Release Design Lead' );
+__( 'Release Deputy' );
 __( 'Core Developer' );
 __( 'External Libraries' );
